@@ -16,7 +16,7 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
 	
-	var spacing = 40; // adjust as needed
+	var spacing = 50; // adjust as needed
 
 	$("#content").css("width", $loveHeart.width() + $("#code").width()+spacing);
 	$("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
