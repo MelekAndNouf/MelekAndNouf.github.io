@@ -3,7 +3,7 @@
 <head>
 <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>This one is for my Varchhu</title>
+<title>This one is for Nafnoufti </title>
 
 <style type="text/css">
 @font-face {
@@ -19,6 +19,21 @@
 </head>
 
 <body>
+	<button id="playButton" onclick="document.getElementById('myAudio').play()">Play Audio</button>
+  
+  <!-- Audio element without autoplay -->
+  <audio id="myAudio" src="sound/music.wav" autoplay></audio>
+
+  <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set a 5-second delay (5000 milliseconds)
+      setTimeout(() => {
+        // Simulate clicking the play button
+        document.getElementById("playButton").click();
+      }, 1000);
+    });
+  </script>
 
 <div id="mainDiv">
 	<div id="content">
@@ -48,19 +63,19 @@
 			Now If you want to hug me you can touch the heart below<br />
 			<br>
 			<span id="heartspan">
-			<a href="image.jpg"><i class="fas fa-heart" id="icon"></i></a>
+			<a href="index2.html"><i class="fas fa-heart" id="icon"></i></a>
 			</span>
 		</div>
 		<div id="loveHeart">
 			<canvas id="garden"></canvas>
 			<div id="words">
 				<div id="messages">
-					वर्षा ऋतु FOREVER
+					Rabbi itawwel 3echretna ^_^
 					<div id="elapseClock"></div>
 				</div>
 				<div id="loveu">
-					I LOVE YOU SO MUCH<br/>
-					<div class="signature">- RITVIK</div>
+					Nhebbek barcha Nouf<br/>
+					<div class="signature">- Malou5ia</div>
 				</div>
 			</div>
 		</div>
@@ -71,9 +86,9 @@
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
 var together = new Date();
-together.setFullYear(2016, 8, 5);
-together.setHours(16);
-together.setMinutes(30);
+together.setFullYear(2024, 9, 12);
+together.setHours(20);
+together.setMinutes(0);
 together.setSeconds(0);
 together.setMilliseconds(0);
 
