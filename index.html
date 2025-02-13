@@ -11,6 +11,85 @@
 	src: url('digital-7_mono.ttf') format("truetype");
 }
 </style>
+
+  <style>
+    /* Modal overlay */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000; /* Ensure it's on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    }
+
+    /* Modal content box */
+    .modal-content {
+      position: relative;
+      margin: 1% auto;
+      padding: 1px;
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Close button (x) */
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 30px;
+      cursor: pointer;
+	  background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Each slide */
+    .slide {
+      display: none;
+      width: 100%;
+    }
+
+    /* Show active slide */
+    .active-slide {
+      display: block;
+    }
+
+    /* Next & Previous arrows */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: #333;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .next {
+      right: 10px;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev {
+      left: 10px;
+    }
+	.gradient-background {
+      background: rgb(255, 208, 229);
+      background: linear-gradient(180deg, rgba(255, 208, 229, 1) 0%, rgba(255, 232, 242, 1) 36%, rgba(255, 255, 255, 1) 100%);
+	  min-height: 100vh;
+    }
+
+  </style>
+  
 <link href="css/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/garden.js"></script>
@@ -18,33 +97,49 @@
 
 </head>
 
-<body>
-	<button id="playButton" onclick="document.getElementById('myAudio').play()">Play Audio</button>
+<body class="gradient-background">
+	<button id="playButton" hidden onclick="document.getElementById('myAudio').play()">Play Audio</button>
   
   <!-- Audio element without autoplay -->
-  <audio id="myAudio" src="sound/music.wav" autoplay></audio>
+  <audio id="myAudio" src="sound/music.mp3" autoplay></audio>
 
   <script>
-    // Wait for the DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', () => {
+
+	document.body.addEventListener('click', () => {
       // Set a 5-second delay (5000 milliseconds)
       setTimeout(() => {
         // Simulate clicking the play button
         document.getElementById("playButton").click();
-      }, 1000);
-    });
+      }, true);
+	});
   </script>
-
 <div id="mainDiv">
 	<div id="content">
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					<!--Rabbi itawwel 3echretna ^_^ a7na m3a b3adhna 3anna: -->
+					ربي يطوّل عشرتنا نوف ^_^ أحنا مع بعضنا عنّا
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					نحبّك بارشا ♥<br/>
+					<div class="signature">- ملّوخيّة</div>
+				</div>
+			</div>
+		</div>
+
 		<div id="code">
 			<span class="comments">/**</span><br />
 			<span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
 			<span class="space"/><span class="comments">*/</span><br />
 			Hey Girl !<br />
 			Do you remember the day we first met?<br />
+			مرحبا بك يا عزيزتي <br />
 			<span class="comments">// The ET-LAB Friday. </span><br />
 			Since that day a spark begun;<br />
+
 			<span class="comments">// Your face Your Voice Your Words.</span><br />
 			Your everything got imprinted in my heart;<br />
 			As the time went on;<br />
@@ -63,24 +158,39 @@
 			Now If you want to hug me you can touch the heart below<br />
 			<br>
 			<span id="heartspan">
-			<a href="index2.html"><i class="fas fa-heart" id="icon"></i></a>
+			<!--<a href="index2.html"><i class="fas fa-heart" id="icon"></i></a>-->
+			<!--<<a href="#" id="openSlideshow2"><i class="fas fa-heart" id="icon"></i></a>-->
+			<button id="openSlideshow" style="background: none; border: none; padding: 0; cursor: pointer;">
+				<i class="fas fa-heart" id="icon"></i>
+			  </button>
 			</span>
 		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages">
-					Rabbi itawwel 3echretna ^_^
-					<div id="elapseClock"></div>
-				</div>
-				<div id="loveu">
-					Nhebbek barcha Nouf<br/>
-					<div class="signature">- Malou5ia</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 </div>
+<!--<button id="openSlideshow" hidden>Open Slideshow</button> -->
+<div id="slideshowModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      
+      <!-- Slide 1 -->
+      <div class="slide active-slide">
+        <img src="image1.jpg" alt="Image 1" style="width:100%">
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="image2.jpg" alt="Image 2" style="width:100%">
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="image3.jpg" alt="Image 3" style="width:100%">
+      </div>
+
+      <!-- Navigation arrows -->
+      <a class="prev" id="prevSlide">&#10094;</a>
+      <a class="next" id="nextSlide">&#10095;</a>
+    </div>
+  </div>
 
 <script type="text/javascript">
 var offsetX = $("#loveHeart").width() / 2;
@@ -115,5 +225,85 @@ if (!document.createElement('canvas').getContext) {
 	$("#code").typewriter();
 }
 </script>
+<script>
+    // Get modal elements
+    const modal = document.getElementById("slideshowModal");
+	//const openBtn = document.getElementById("openSlideshow");
+    //const openLink = document.getElementById("openSlideshow2");
+    const closeBtn = document.getElementById("closeModal");
+
+	//openLink.addEventListener("click", function(e) {
+    // Prevent the anchor's default behavior (navigating to index2.html)
+    //e.preventDefault();
+    
+    // Simulate a click on the "Open Slideshow" button
+   // openBtn.click();
+ // });
+ 	//document.addEventListener("DOMContentLoaded", () => {
+    //const modal = document.getElementById("slideshowModal");
+    //const openBtn = document.getElementById("openSlideshow");
+
+   //   openBtn.addEventListener("click", () => {
+   //   modal.style.display = "block";
+   // });
+  	//});
+
+	  document.body.addEventListener("click", (event) => {
+    if (event.target.closest("#openSlideshow")) {
+      //const modal = document.getElementById("slideshowModal");
+      modal.style.display = "block";
+    }
+  });
+
+    // Open the modal when the button is clicked
+   // openBtn.addEventListener("click", () => {
+	//	e.preventDefault();
+    //  modal.style.display = "block";
+    //});
+
+    // Close the modal when the "x" is clicked
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Optional: close the modal when clicking outside the modal content
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Slideshow functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const nextSlideBtn = document.getElementById("nextSlide");
+    const prevSlideBtn = document.getElementById("prevSlide");
+
+    // Function to display the slide at the given index
+    function showSlide(index) {
+      // Wrap around if index goes out of bounds
+      if (index >= slides.length) {
+        slideIndex = 0;
+      } else if (index < 0) {
+        slideIndex = slides.length - 1;
+      } else {
+        slideIndex = index;
+      }
+      
+      // Hide all slides and show the current one
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active-slide', idx === slideIndex);
+      });
+    }
+
+    // Next and Previous button event listeners
+    nextSlideBtn.addEventListener("click", () => {
+      showSlide(slideIndex + 1);
+    });
+
+    prevSlideBtn.addEventListener("click", () => {
+      showSlide(slideIndex - 1);
+    });
+  </script>
 </body>
 </html>

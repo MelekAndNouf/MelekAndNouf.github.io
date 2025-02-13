@@ -16,7 +16,9 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
 	
-	$("#content").css("width", $loveHeart.width() + $("#code").width());
+	var spacing = 20; // adjust as needed
+
+	$("#content").css("width", $loveHeart.width() + $("#code").width()+spacing);
 	$("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
 	$("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
 	$("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
@@ -82,7 +84,9 @@ function startHeartAnimation() {
 				} else {
 					progress++;
 				}
-				$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+				//$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+				$ele.html(str.substring(0, progress));
+
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
@@ -110,7 +114,10 @@ function timeElapse(date){
 	if (seconds < 10) {
 		seconds = "0" + seconds;
 	}
-	var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
+	//var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds"; 
+	var result = "<span class=\"digit\">" + days + "</span>  يوم  <span class=\"digit\">" + hours + "</span>  ساعة  <span class=\"digit\">" + minutes + "</span>  دقيقة و  <span class=\"digit\">" + seconds + "</span>  ثواني"; 
+
+	//var result = "ثواني <span class=\"digit\">" + seconds + "</span>" + " دقيقة <span class=\"digit\">" + minutes + "</span>" + " ساعة <span class=\"digit\">" + hours + "</span>" + " يوم <span class=\"digit\">" + days + "</span>";
 	$("#elapseClock").html(result);
 }
 
